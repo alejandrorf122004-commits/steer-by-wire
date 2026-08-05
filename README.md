@@ -65,6 +65,7 @@ arquitectura.
 - [docs/README.md](docs/README.md) indice general de la documentacion
 - [docs/hardware-evaluation.md](docs/hardware-evaluation.md) criterio realista para decidir el cambio de hardware
 - [docs/arquitectura-uim2513-rs232-can.md](docs/arquitectura-uim2513-rs232-can.md) arquitectura del enlace actual
+- [docs/manuals/README.md](docs/manuals/README.md) manuales del motor y notas de integracion
 - [docs/manual-as5600-rpi-zero-2w.md](docs/manual-as5600-rpi-zero-2w.md) manual de banco para sensor y OLED
 - [docs/repo-assets.md](docs/repo-assets.md) lista de fotos, videos y capturas utiles para portfolio
 - [docs/evidence/2026-08-04/README.md](docs/evidence/2026-08-04/README.md) evidencia inicial del banco

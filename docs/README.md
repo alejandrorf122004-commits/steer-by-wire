@@ -11,6 +11,7 @@ lea rapido y sin perder el hilo tecnico.
 4. [Manual del AS5600 con Raspberry Pi Zero 2 W](manual-as5600-rpi-zero-2w.md)
 5. [Roadmap](roadmap.md)
 6. [Evaluacion del HAT MCP2515 RS485/CAN](hat-wvs-14882-evaluacion.md)
+7. [Manuales del proyecto](manuals/README.md)
 
 ## Archivos de apoyo
 

@@ -34,6 +34,15 @@ solo cambia la interfaz fisica.
 - `UIM4247CM`: actuador principal sobre la caja de direccion
 - fuente externa: alimentacion del motor y del lado de potencia
 
+## Lo que confirma el manual del motor
+
+- El UIM342 trabaja con `CAN 2.0B` y permite bit rates desde `125 Kbps` hasta `1 Mbps`.
+- El direccionamiento usa `Node ID`, `Group ID` y `Global ID`.
+- Para movimiento simple, los comandos mas utiles son `MO`, `BG`, `ST`, `JV`, `PR` y `PA`.
+- En CAN directo, el maestro usa `Producer ID = 4` y el motor arranca con `Consumer ID = 5`.
+- El manual separa dos caminos: `CAN directo` o `RS232/Ethernet gateway` con mensajes UI.
+- Si usamos el HAT `WVS-14882`, la meta es llegar a `CAN directo` y dejar la capa serial solo como respaldo.
+
 ## Diagrama de conexion
 
 ```mermaid
