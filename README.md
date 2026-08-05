@@ -74,6 +74,7 @@ arquitectura.
 
 - `tools/oled_compass.py` monitor de flecha para la OLED
 - `tools/steer_by_wire_runtime.py` runtime de banco para sensor, OLED y capa de actuacion
+- `tools/hat_can_probe.py` probe independiente para validar el HAT WVS-14882 y `can0`
 
 ## Estructura
 

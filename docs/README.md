@@ -16,6 +16,7 @@ lea rapido y sin perder el hilo tecnico.
 ## Archivos de apoyo
 
 - [oled-compass-display.md](oled-compass-display.md) explica la flecha en la OLED
+- [hat-can-probe.md](hat-can-probe.md) primer paso para validar el HAT WVS-14882
 
 ## Recomendacion de uso
 
