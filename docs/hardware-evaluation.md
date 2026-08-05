@@ -8,6 +8,18 @@ Vale la pena reemplazar la cadena cara de laboratorio:
 
 por una placa HAT para Raspberry Pi que ofrezca `CAN` y, posiblemente, `RS485`.
 
+## Candidato actual
+
+El candidato que acabamos de revisar es el `WVS-14882` de Sigma, basado en
+`MCP2515` y pensado para Raspberry Pi. Su manual oficial indica:
+
+- bus `CAN` sobre `SPI`
+- soporte de `SocketCAN` en Linux
+- activacion con `dtoverlay=mcp2515-can0`
+
+Eso significa que **sí puede reemplazar la interfaz física** de acceso al bus
+CAN, siempre que el bitrate y las tramas coincidan con el sistema del motor.
+
 ## Respuesta corta
 
 **Si el HAT expone CAN real y estable en Linux, si vale la pena.**
@@ -51,8 +63,11 @@ Eso si tiene valor real en GitHub.
 Mi recomendacion es:
 
 1. mantener el repositorio publico con la parte de sensing, OLED, arquitectura y pruebas
-2. evaluar el HAT como sustituto del enlace de laboratorio
-3. documentar la decision final con una tabla comparativa
+2. instalar el HAT si ya lo tienes a mano, porque es la forma mas limpia de
+   probar `SocketCAN` en la Pi
+3. documentar la decision final con una tabla comparativa entre:
+   - `USB-RS232 + UIM2513`
+   - `WVS-14882 + CAN directo`
 
 ## Conclusion
 

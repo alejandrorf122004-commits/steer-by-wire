@@ -54,10 +54,11 @@ Estas son las pruebas que ya quedaron guardadas dentro del repositorio:
 
 ## Pregunta de hardware abierta
 
-Se esta evaluando reemplazar la cadena `USB-RS232 + RS232-CAN gateway` por una
-placa HAT para Raspberry Pi con interfaz `CAN` real y, si aplica, `RS485`.
-La decision final depende de que el HAT exponga `CAN` utilizable en Linux
-(`SocketCAN`) y no solo un puerto `RS485`.
+La cadena `USB-RS232 + RS232-CAN gateway` ya no es la unica opcion.
+Se esta evaluando y documentando un HAT para Raspberry Pi con `CAN` real
+(`WVS-14882`, basado en `MCP2515`) que expone `SocketCAN` en Linux. Si el
+bitrate del bus coincide con el del motor, este camino simplifica bastante la
+arquitectura.
 
 ## Documentacion principal
 

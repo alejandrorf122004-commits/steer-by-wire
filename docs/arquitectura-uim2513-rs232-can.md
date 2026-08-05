@@ -13,9 +13,18 @@ consignas y registro de datos.
 ## Nota sobre el cambio de hardware
 
 Se esta evaluando sustituir el enlace de laboratorio por un HAT para Raspberry
-Pi con `CAN` y, si aplica, `RS485`. Esa idea solo funciona si el HAT ofrece un
-`CAN` real y usable en Linux. Si solo entrega `RS485`, no reemplaza el camino
-`RS232 -> CAN` que necesita el motor.
+Pi con `CAN` y, si aplica, `RS485`. El candidato actual es el `WVS-14882`,
+basado en `MCP2515`, porque expone `SocketCAN` en Linux y si puede reemplazar
+la interfaz USB-RS232/UIM2513 como capa de acceso al bus.
+
+El cambio solo funciona si:
+
+- el HAT levanta `can0` sin errores
+- el bitrate coincide con el del banco
+- el protocolo del motor se implementa directamente sobre CAN
+
+Si alguna de esas tres piezas falla, el HAT no elimina el trabajo pendiente,
+solo cambia la interfaz fisica.
 
 ## Bloques
 
@@ -72,13 +81,13 @@ flowchart LR
 
 ## Siguiente paso
 
-Cuando el gateway este disponible, se debe:
+Cuando el HAT este montado, se debe:
 
-1. Confirmar el enlace fisico RS232 con la Raspberry Pi.
-2. Verificar que el UIM2513 responde.
-3. Leer el motor y enviar un primer comando de movimiento pequeño.
-4. Registrar respuesta, latencia y comportamiento de parada.
-5. Comparar ese camino contra el HAT candidato antes de fijar arquitectura final.
+1. Confirmar que `can0` aparece en Linux.
+2. Verificar el bitrate del bus.
+3. Capturar las tramas de la red.
+4. Enviar un primer mensaje de prueba al actuador.
+5. Comparar ese camino contra el enlace con UIM2513 antes de fijar arquitectura final.
 
 ## Programa preparado
 
@@ -88,7 +97,8 @@ El runtime preparado para este flujo es:
 python3 tools/steer_by_wire_runtime.py
 ```
 
-Si ya existe el enlace serial hacia el UIM2513, la forma de prueba es:
+Si el enlace serial hacia el UIM2513 sigue siendo el que se use, la forma de
+prueba es:
 
 ```bash
 python3 tools/steer_by_wire_runtime.py --motor-port /dev/ttyUSB0 --motor-baud 115200

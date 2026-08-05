@@ -10,6 +10,7 @@ lea rapido y sin perder el hilo tecnico.
 3. [Arquitectura del enlace actual](arquitectura-uim2513-rs232-can.md)
 4. [Manual del AS5600 con Raspberry Pi Zero 2 W](manual-as5600-rpi-zero-2w.md)
 5. [Roadmap](roadmap.md)
+6. [Evaluacion del HAT MCP2515 RS485/CAN](hat-wvs-14882-evaluacion.md)
 
 ## Archivos de apoyo
 
