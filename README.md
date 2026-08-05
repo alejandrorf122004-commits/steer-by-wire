@@ -20,6 +20,16 @@ Hay dos niveles de integracion:
 - **Banco de sensing**: `AS5600` + `OLED` ya funcionando
 - **Banco de actuacion**: ruta serial/CAN en evaluacion con el hardware del laboratorio
 
+## Evidencia del banco
+
+Estas son las pruebas que ya quedaron guardadas dentro del repositorio:
+
+| Foto 1 | Foto 2 | Foto 3 |
+| --- | --- | --- |
+| ![Banco AS5600 + OLED 1](docs/evidence/2026-08-04/evidence-01.png) | ![Banco AS5600 + OLED 2](docs/evidence/2026-08-04/evidence-02.png) | ![Banco AS5600 + OLED 3](docs/evidence/2026-08-04/evidence-03.png) |
+
+- Video corto de la prueba: [WhatsApp Video 2026-08-04 at 9.38.31 PM.mp4](docs/evidence/2026-08-04/WhatsApp%20Video%202026-08-04%20at%209.38.31%20PM.mp4)
+
 ## Pregunta de hardware abierta
 
 Se esta evaluando reemplazar la cadena `USB-RS232 + RS232-CAN gateway` por una
@@ -48,11 +58,11 @@ La decision final depende de que el HAT exponga `CAN` utilizable en Linux
 - `output/` artefactos exportados, como PDF o STL
 - `thesis-latex/` version academica en LaTeX
 - `tools/` scripts de banco y utilidades de control
+- `docs/evidence/` fotos y video de las pruebas del banco
 
 ## Lo que faltaria para que el repo quede fuerte
 
 1. Confirmar el HAT exacto y su interfaz real de `CAN`.
-2. Guardar fotos limpias del banco y del cableado final.
-3. Grabar un video corto del sensor moviendo la flecha en la OLED.
-4. Documentar el flujo motor/hardware con comandos de prueba reproducibles.
-5. Publicar un README final con una demo funcional y una seccion de riesgos.
+2. Documentar el flujo motor/hardware con comandos de prueba reproducibles.
+3. Registrar resultados de pruebas con el hardware definitivo de actuacion.
+4. Cerrar la arquitectura final cuando se valide el bus `CAN` real.
