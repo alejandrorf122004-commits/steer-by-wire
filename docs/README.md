@@ -14,7 +14,6 @@ lea rapido y sin perder el hilo tecnico.
 ## Archivos de apoyo
 
 - [oled-compass-display.md](oled-compass-display.md) explica la flecha en la OLED
-- [agents-y-skills.md](agents-y-skills.md) describe como se delegan tareas en el proyecto
 
 ## Recomendacion de uso
 

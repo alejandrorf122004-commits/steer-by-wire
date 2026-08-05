@@ -34,6 +34,7 @@ La decision final depende de que el HAT exponga `CAN` utilizable en Linux
 - [docs/arquitectura-uim2513-rs232-can.md](docs/arquitectura-uim2513-rs232-can.md) arquitectura del enlace actual
 - [docs/manual-as5600-rpi-zero-2w.md](docs/manual-as5600-rpi-zero-2w.md) manual de banco para sensor y OLED
 - [docs/repo-assets.md](docs/repo-assets.md) lista de fotos, videos y capturas utiles para portfolio
+- [docs/evidence/2026-08-04/README.md](docs/evidence/2026-08-04/README.md) evidencia inicial del banco
 
 ## Software util
 

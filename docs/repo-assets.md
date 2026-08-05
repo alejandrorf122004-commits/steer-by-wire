@@ -1,5 +1,12 @@
 # Assets que mejoran el GitHub
 
+## Evidencia ya guardada
+
+- `docs/evidence/2026-08-04/evidence-01.png`
+- `docs/evidence/2026-08-04/evidence-02.png`
+- `docs/evidence/2026-08-04/evidence-03.png`
+- `docs/evidence/2026-08-04/WhatsApp Video 2026-08-04 at 9.38.31 PM.mp4`
+
 ## Prioridad alta
 
 - Foto limpia del banco completo

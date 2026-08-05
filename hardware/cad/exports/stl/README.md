@@ -12,6 +12,3 @@ SBW-003_magnet-holder_v01.stl
 
 Los STL son archivos derivados. Las piezas editables de SolidWorks permanecen
 en `hardware/cad/parts/`.
-
-La skill `export-cad-to-stl` puede regenerar automaticamente esta carpeta
-despues de guardar cambios en las piezas.
