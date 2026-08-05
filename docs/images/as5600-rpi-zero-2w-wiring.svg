@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <defs>
+    <style>
+      .title { font: 700 34px 'Segoe UI', sans-serif; fill: #17324d; }
+      .subtitle { font: 500 18px 'Segoe UI', sans-serif; fill: #4b6175; }
+      .box-title { font: 700 23px 'Segoe UI', sans-serif; fill: #ffffff; }
+      .pin { font: 600 17px 'Consolas', monospace; fill: #17324d; }
+      .note { font: 500 16px 'Segoe UI', sans-serif; fill: #465968; }
+      .small { font: 600 14px 'Segoe UI', sans-serif; fill: #17324d; }
+      .wire { fill: none; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#0b2238" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <rect width="1400" height="900" fill="#f4f0e8"/>
+  <circle cx="1250" cy="100" r="170" fill="#e7b44b" opacity="0.18"/>
+  <circle cx="180" cy="850" r="240" fill="#2f7d77" opacity="0.12"/>
+
+  <text x="60" y="62" class="title">AS5600 + ADS1115 + OLED en Raspberry Pi Zero 2 W</text>
+  <text x="60" y="94" class="subtitle">Bus I2C compartido a 3.3 V - conectar siempre con la Raspberry Pi apagada</text>
+
+  <g filter="url(#shadow)">
+    <rect x="60" y="155" width="360" height="565" rx="24" fill="#ffffff"/>
+    <rect x="60" y="155" width="360" height="72" rx="24" fill="#17324d"/>
+    <rect x="60" y="205" width="360" height="22" fill="#17324d"/>
+    <text x="90" y="201" class="box-title">Raspberry Pi Zero 2 W</text>
+
+    <text x="90" y="292" class="pin">Pin 1  - 3V3</text>
+    <circle cx="390" cy="286" r="9" fill="#d94841"/>
+    <text x="90" y="392" class="pin">Pin 6  - GND</text>
+    <circle cx="390" cy="386" r="9" fill="#25313b"/>
+    <text x="90" y="492" class="pin">Pin 3  - SDA / GPIO2</text>
+    <circle cx="390" cy="486" r="9" fill="#2f7d77"/>
+    <text x="90" y="592" class="pin">Pin 5  - SCL / GPIO3</text>
+    <circle cx="390" cy="586" r="9" fill="#d89b28"/>
+
+    <rect x="90" y="635" width="300" height="55" rx="12" fill="#eef4f2"/>
+    <text x="110" y="658" class="small">Alimentar la Pi por micro-USB</text>
+    <text x="110" y="679" class="small">con fuente estable de 5 V / 2 A</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="895" y="130" width="435" height="315" rx="24" fill="#ffffff"/>
+    <rect x="895" y="130" width="435" height="66" rx="24" fill="#2f7d77"/>
+    <rect x="895" y="176" width="435" height="20" fill="#2f7d77"/>
+    <text x="925" y="173" class="box-title">AS5600</text>
+    <text x="925" y="235" class="pin">VCC  3.3 V</text>
+    <text x="925" y="272" class="pin">GND</text>
+    <text x="925" y="309" class="pin">SDA</text>
+    <text x="925" y="346" class="pin">SCL</text>
+    <text x="1150" y="235" class="pin">OUT</text>
+    <text x="1150" y="272" class="pin">DIR -> GND</text>
+    <text x="1150" y="309" class="pin">PGO -> N/C</text>
+    <text x="925" y="402" class="note">I2C digital + salida analogica simultanea</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="895" y="485" width="435" height="260" rx="24" fill="#ffffff"/>
+    <rect x="895" y="485" width="435" height="66" rx="24" fill="#c7772b"/>
+    <rect x="895" y="531" width="435" height="20" fill="#c7772b"/>
+    <text x="925" y="528" class="box-title">ADS1115</text>
+    <text x="925" y="590" class="pin">VDD  3.3 V</text>
+    <text x="925" y="627" class="pin">GND</text>
+    <text x="925" y="664" class="pin">SDA / SCL</text>
+    <text x="1150" y="590" class="pin">A0 <- OUT</text>
+    <text x="1150" y="627" class="pin">ADDR -> GND</text>
+    <text x="1150" y="664" class="pin">ALRT -> N/C</text>
+    <text x="925" y="712" class="note">Direccion esperada: 0x48</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="510" y="650" width="310" height="170" rx="24" fill="#ffffff"/>
+    <rect x="510" y="650" width="310" height="60" rx="24" fill="#17324d"/>
+    <rect x="510" y="690" width="310" height="20" fill="#17324d"/>
+    <text x="540" y="691" class="box-title">OLED I2C</text>
+    <text x="540" y="748" class="pin">VCC  GND  SDA  SCL</text>
+    <text x="540" y="786" class="note">0x3C o 0x3D</text>
+  </g>
+
+  <!-- Shared rails -->
+  <path d="M390 286 H760 V218 H895" class="wire" stroke="#d94841"/>
+  <path d="M760 286 V735" class="wire" stroke="#d94841"/>
+  <path d="M760 573 H895" class="wire" stroke="#d94841"/>
+  <path d="M760 735 H820" class="wire" stroke="#d94841"/>
+
+  <path d="M390 386 H715 V255 H895" class="wire" stroke="#25313b"/>
+  <path d="M715 386 V765" class="wire" stroke="#25313b"/>
+  <path d="M715 610 H895" class="wire" stroke="#25313b"/>
+  <path d="M715 765 H820" class="wire" stroke="#25313b"/>
+
+  <path d="M390 486 H665 V292 H895" class="wire" stroke="#2f7d77"/>
+  <path d="M665 486 V795" class="wire" stroke="#2f7d77"/>
+  <path d="M665 647 H895" class="wire" stroke="#2f7d77"/>
+  <path d="M665 795 H820" class="wire" stroke="#2f7d77"/>
+
+  <path d="M390 586 H615 V329 H895" class="wire" stroke="#d89b28"/>
+  <path d="M615 586 V825" class="wire" stroke="#d89b28"/>
+  <path d="M615 680 H895" class="wire" stroke="#d89b28"/>
+  <path d="M615 825 H820" class="wire" stroke="#d89b28"/>
+
+  <!-- Analog link -->
+  <path d="M1285 222 H1360 V455 H850 V575 H895" class="wire" stroke="#5f5aa2"/>
+  <rect x="1040" y="448" width="185" height="34" rx="17" fill="#eeeafd"/>
+  <text x="1061" y="471" class="small">OUT analogico -> A0</text>
+
+  <g transform="translate(60 775)">
+    <rect x="0" y="0" width="1320" height="84" rx="18" fill="#fff7e5" stroke="#d89b28" stroke-width="2"/>
+    <text x="22" y="33" class="small">IMPORTANTE: el orden fisico de los pines cambia segun el fabricante.</text>
+    <text x="22" y="60" class="note">Sigue las etiquetas impresas en cada placa y confirma frente/reverso antes de energizar.</text>
+  </g>
+</svg>

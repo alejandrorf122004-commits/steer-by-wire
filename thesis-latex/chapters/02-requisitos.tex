@@ -1,0 +1,17 @@
+\chapter{Requisitos}
+
+En esta etapa se definen los requisitos funcionales, los limites de seguridad y las restricciones fisicas del sistema.
+
+Se recomienda separar los requisitos en cuatro grupos:
+
+\begin{itemize}
+  \item direccion y respuesta
+  \item seguridad y modos de falla
+  \item alimentacion y cableado
+  \item integracion mecanica y montaje
+\end{itemize}
+
+Para la version actual del prototipo, la cadena de actuacion debe considerar un
+gateway `RS232-CAN` entre la Raspberry Pi y el motor `UIM4247CM`.
+
+Los valores numericos deben cerrarse solo despues de validar torque, holgura, latencia y condiciones de operacion reales.

@@ -1,0 +1,19 @@
+\chapter{Control y software}
+
+Este capitulo describe la lectura del AS5600, la logica de control y las condiciones de seguridad del software.
+
+Se debe documentar:
+
+\begin{itemize}
+  \item frecuencia de actualizacion
+  \item filtrado de medidas
+  \item saturacion y limites
+  \item deteccion de fallos
+  \item accion de estado seguro
+\end{itemize}
+
+La primera version de control enviara consignas desde la Raspberry Pi hacia el
+gateway `UIM2513`, y de alli al bus `CAN` del motor `UIM4247CM`.
+
+Si la temporizacion de la plataforma no es suficientemente determinista, se
+debe registrar la necesidad de una capa adicional de control.

@@ -1,0 +1,31 @@
+\documentclass[12pt,a4paper]{report}
+
+\input{preamble}
+
+\addbibresource{referencias.bib}
+
+\title{Diseno e Implementacion de un Sistema de Direccion Steer by Wire}
+\author{Nombre del estudiante}
+\date{\today}
+
+\begin{document}
+
+\pagenumbering{roman}
+\maketitle
+\tableofcontents
+\listoffigures
+\listoftables
+
+\cleardoublepage
+\pagenumbering{arabic}
+
+\include{chapters/01-introduccion}
+\include{chapters/02-requisitos}
+\include{chapters/03-arquitectura}
+\include{chapters/04-control}
+\include{chapters/05-validacion}
+\include{chapters/06-conclusiones}
+
+\printbibliography
+
+\end{document}

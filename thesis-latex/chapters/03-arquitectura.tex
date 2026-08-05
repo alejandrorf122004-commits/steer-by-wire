@@ -1,0 +1,18 @@
+\chapter{Arquitectura del sistema}
+
+El sistema puede dividirse en cinco bloques:
+
+\begin{itemize}
+  \item sensor de volante
+  \item unidad de computo
+  \item etapa de potencia
+  \item actuador en la caja de direccion
+  \item monitoreo y seguridad
+\end{itemize}
+
+En la arquitectura actual, la comunicacion entre la unidad de computo y el
+actuador se plantea mediante un gateway `UIM2513`, que traduce `RS232` a `CAN`
+hacia el motor `UIM4247CM`.
+
+Esta separacion ayuda a documentar interfaces, definir pruebas y detectar donde
+hace falta una capa de seguridad adicional.

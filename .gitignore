@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+*.log
+*.tmp
+tmp/
+Thumbs.db
+*.swp
+output/pdf/*.pdf
+output/stl/*.stl
