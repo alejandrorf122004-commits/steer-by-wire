@@ -193,7 +193,9 @@ def main() -> None:
         data = parse_data_bytes(args.send_data)
         frame = build_frame(can_id, data, extended=args.extended, rtr=args.rtr, error=args.error)
         sock.send(frame)
-        print(f"Frame enviado: {format_frame(ParsedFrame(can_id=can_id | (CAN_EFF_FLAG if args.extended else 0), dlc=len(data), data=data.ljust(8, b'\x00')))}")
+        sent_can_id = can_id | (CAN_EFF_FLAG if args.extended else 0)
+        sent_frame = ParsedFrame(can_id=sent_can_id, dlc=len(data), data=data.ljust(8, b"\x00"))
+        print(f"Frame enviado: {format_frame(sent_frame)}")
 
     if args.monitor:
         if sock is None:
