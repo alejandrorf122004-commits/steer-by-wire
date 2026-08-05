@@ -3,6 +3,20 @@
 Repositorio de portfolio y banco de pruebas para una direccion steer-by-wire
 basada en Raspberry Pi, sensor AS5600, OLED de banco y actuador UIM.
 
+## Demo rapida
+
+```bash
+cd ~/Documentos/steer-by-wire
+source .venv/bin/activate
+python3 tools/steer_by_wire_runtime.py
+```
+
+Con eso se levanta el banco de pruebas que ya deja ver:
+
+- lectura del AS5600
+- flecha de direccion en la OLED
+- base lista para integrar el motor cuando este el gateway disponible
+
 ## Resumen
 
 El proyecto documenta:
@@ -19,6 +33,14 @@ Hay dos niveles de integracion:
 
 - **Banco de sensing**: `AS5600` + `OLED` ya funcionando
 - **Banco de actuacion**: ruta serial/CAN en evaluacion con el hardware del laboratorio
+
+## Que hay dentro
+
+- `docs/` decisiones tecnicas, arquitectura y pruebas
+- `hardware/` CAD y piezas impresas del banco
+- `tools/` scripts de control y visualizacion
+- `thesis-latex/` estructura para convertir el proyecto en tesis
+- `docs/evidence/` fotos y video del montaje real
 
 ## Evidencia del banco
 
@@ -53,9 +75,9 @@ La decision final depende de que el HAT exponga `CAN` utilizable en Linux
 
 ## Estructura
 
-- `docs/` decisiones, arquitectura, validacion y notas tecnicas
-- `hardware/` CAD, piezas y ensambles mecanicos
 - `output/` artefactos exportados, como PDF o STL
+- `hardware/` CAD, piezas y ensambles mecanicos
+- `docs/` decisiones, arquitectura, validacion y notas tecnicas
 - `thesis-latex/` version academica en LaTeX
 - `tools/` scripts de banco y utilidades de control
 - `docs/evidence/` fotos y video de las pruebas del banco
