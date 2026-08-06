@@ -12,11 +12,13 @@ lea rapido y sin perder el hilo tecnico.
 5. [Roadmap](roadmap.md)
 6. [Evaluacion del HAT MCP2515 RS485/CAN](hat-wvs-14882-evaluacion.md)
 7. [Manuales del proyecto](manuals/README.md)
+8. [Seguimiento directo AS5600-CAN-UIM342](direct-can-follow-runtime.md)
 
 ## Archivos de apoyo
 
 - [oled-compass-display.md](oled-compass-display.md) explica la flecha en la OLED
 - [hat-can-probe.md](hat-can-probe.md) primer paso para validar el HAT WVS-14882
+- [evidencia 2026-08-05](evidence/2026-08-05/README.md) video y resultados del seguimiento completo
 
 ## Recomendacion de uso
 

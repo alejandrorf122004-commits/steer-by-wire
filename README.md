@@ -1,93 +1,127 @@
 # Steer-by-Wire Portfolio
 
-Repositorio de portfolio y banco de pruebas para una direccion steer-by-wire
-basada en Raspberry Pi, sensor AS5600, OLED de banco y actuador UIM.
+Prototipo de banco para estudiar una direccion steer-by-wire con Raspberry Pi
+Zero 2 W, sensor magnetico AS5600, pantalla OLED y un actuador UIM conectado
+directamente por CAN.
 
-## Demo rapida
+> Estado: prototipo funcional de banco. No esta validado para uso en un
+> vehiculo ni reemplaza una arquitectura de seguridad automotriz.
+
+## Demostracion actual
+
+La cadena completa validada el 5 de agosto de 2026 es:
+
+```text
+AS5600 -> I2C -> Raspberry Pi -> SocketCAN -> MCP2515 HAT -> UIM342 -> UIM4247CM
+                    |
+                    +-> OLED SSD1306
+```
+
+El volante de prueba actualiza la flecha y los grados en la OLED. La misma
+lectura se convierte en una posicion absoluta para el motor. La velocidad del
+actuador aumenta cuando el volante se mueve mas rapido.
+
+[![Prueba de seguimiento AS5600-CAN-UIM342](docs/evidence/2026-08-05/bench-follow-preview.jpg)](docs/evidence/2026-08-05/bench-follow-as5600-uim342.mp4)
+
+[Ver video de la prueba de seguimiento](docs/evidence/2026-08-05/bench-follow-as5600-uim342.mp4)
+
+## Estado validado
+
+- AS5600 y OLED compartiendo el bus I2C.
+- HAT WVS-14882 con MCP2515 y oscilador de 12 MHz.
+- Interfaz `can0` por SocketCAN a `500 kbit/s`.
+- Comunicacion directa con UIM342, nodo CAN `13`.
+- Movimiento relativo de banco con posicion y velocidad verificadas.
+- Seguimiento continuo AS5600 -> posicion absoluta del motor.
+- Parada ante fallo CAN, estado inseguro del motor o lecturas sostenidamente
+  incoherentes del sensor.
+- Restauracion de aceleracion y desaceleracion del motor al terminar.
+
+## Prueba de sensor y OLED
+
+Esta prueba no envia ordenes al motor:
 
 ```bash
 cd ~/Documentos/steer-by-wire
 source .venv/bin/activate
-python3 tools/steer_by_wire_runtime.py
+python3 tools/steer_by_wire_follow_runtime.py monitor --duration 10
 ```
 
-Con eso se levanta el banco de pruebas que ya deja ver:
+## Seguimiento completo de banco
 
-- lectura del AS5600
-- flecha de direccion en la OLED
-- base lista para integrar el motor cuando este el gateway disponible
+Antes de ejecutarlo, el eje debe estar libre y debe existir acceso inmediato
+al corte de la fuente de 24 V.
 
-## Resumen
+```bash
+cd ~/Documentos/steer-by-wire
+sudo .venv/bin/python tools/steer_by_wire_follow_runtime.py follow \
+  --continuous \
+  --unlimited-angle \
+  --min-speed 400 \
+  --max-speed 160000 \
+  --command-deadband 40 \
+  --command-hz 25 \
+  --status-hz 10 \
+  --max-sensor-step 60 \
+  --max-sensor-outliers 5 \
+  --max-tracking-error 80000 \
+  --tracking-error-time 2.0 \
+  --acceleration-ms 100 \
+  --deceleration-ms 100 \
+  --allow-invalid-magnet \
+  --confirm BANCO_LIBRE
+```
 
-El proyecto documenta:
+`Ctrl+C` solicita una parada controlada. La fuente de 24 V debe apagarse antes
+de manipular el motor o el cableado CAN.
 
-- la lectura del volante con `AS5600`
-- la visualizacion en `OLED SSD1306`
-- el lazo de software en `Raspberry Pi Zero 2`
-- la integracion con el actuador por `RS232`/`CAN`
-- la evolucion del hardware de banco y las decisiones de arquitectura
+## Limitaciones observadas
 
-## Estado actual
+- El soporte actual permite que el iman se incline o se aleje del AS5600.
+- El AS5600 reporta campo debil en parte de la prueba; por eso el modo usado en
+  el video incluye `--allow-invalid-magnet`.
+- Un paso del AS5600 equivale aproximadamente a `39 pulsos` de salida con la
+  reduccion actual. El umbral de envio es `40 pulsos`, de modo que un cambio
+  minimo puede aparecer en la OLED antes de producir movimiento visible.
+- La Raspberry Pi ejecuta Linux y no ofrece garantias de tiempo real duro.
+- Aun no existe un sensor independiente en la salida mecanica de direccion.
 
-Hay dos niveles de integracion:
+La prioridad siguiente no es aumentar mas los limites de software. Primero se
+debe rigidizar y centrar el conjunto iman-sensor; despues se mediran latencia,
+error de seguimiento y respuesta a baja velocidad.
 
-- **Banco de sensing**: `AS5600` + `OLED` ya funcionando
-- **Banco de actuacion**: ruta serial/CAN en evaluacion con el hardware del laboratorio
+## Software
 
-## Que hay dentro
+- `tools/oled_compass.py`: interfaz grafica de la OLED.
+- `tools/hat_can_probe.py`: diagnostico independiente del HAT y `can0`.
+- `tools/steer_by_wire_can_runtime.py`: diagnostico y movimientos CAN
+  limitados de banco.
+- `tools/steer_by_wire_follow_runtime.py`: seguimiento AS5600/OLED/CAN con
+  protecciones y modo continuo.
+- `tools/steer_by_wire_runtime.py`: ruta heredada RS232/UIM2513 conservada como
+  respaldo.
 
-- `docs/` decisiones tecnicas, arquitectura y pruebas
-- `hardware/` CAD y piezas impresas del banco
-- `tools/` scripts de control y visualizacion
-- `thesis-latex/` estructura para convertir el proyecto en tesis
-- `docs/evidence/` fotos y video del montaje real
+## Pruebas de software
 
-## Evidencia del banco
-
-Estas son las pruebas que ya quedaron guardadas dentro del repositorio:
-
-| Foto 1 | Foto 2 | Foto 3 |
-| --- | --- | --- |
-| ![Banco AS5600 + OLED 1](docs/evidence/2026-08-04/evidence-01.png) | ![Banco AS5600 + OLED 2](docs/evidence/2026-08-04/evidence-02.png) | ![Banco AS5600 + OLED 3](docs/evidence/2026-08-04/evidence-03.png) |
-
-- Video corto de la prueba: [WhatsApp Video 2026-08-04 at 9.38.31 PM.mp4](docs/evidence/2026-08-04/WhatsApp%20Video%202026-08-04%20at%209.38.31%20PM.mp4)
-
-## Pregunta de hardware abierta
-
-La cadena `USB-RS232 + RS232-CAN gateway` ya no es la unica opcion.
-Se esta evaluando y documentando un HAT para Raspberry Pi con `CAN` real
-(`WVS-14882`, basado en `MCP2515`) que expone `SocketCAN` en Linux. Si el
-bitrate del bus coincide con el del motor, este camino simplifica bastante la
-arquitectura.
-
-## Documentacion principal
-
-- [docs/README.md](docs/README.md) indice general de la documentacion
-- [docs/hardware-evaluation.md](docs/hardware-evaluation.md) criterio realista para decidir el cambio de hardware
-- [docs/arquitectura-uim2513-rs232-can.md](docs/arquitectura-uim2513-rs232-can.md) arquitectura del enlace actual
-- [docs/manuals/README.md](docs/manuals/README.md) manuales del motor y notas de integracion
-- [docs/manual-as5600-rpi-zero-2w.md](docs/manual-as5600-rpi-zero-2w.md) manual de banco para sensor y OLED
-- [docs/repo-assets.md](docs/repo-assets.md) lista de fotos, videos y capturas utiles para portfolio
-- [docs/evidence/2026-08-04/README.md](docs/evidence/2026-08-04/README.md) evidencia inicial del banco
-
-## Software util
-
-- `tools/oled_compass.py` monitor de flecha para la OLED
-- `tools/steer_by_wire_runtime.py` runtime de banco para sensor, OLED y capa de actuacion
-- `tools/hat_can_probe.py` probe independiente para validar el HAT WVS-14882 y `can0`
+```bash
+python3 tests/test_steer_by_wire_can_runtime.py
+python3 tests/test_steer_by_wire_follow_runtime.py
+```
 
 ## Estructura
 
-- `output/` artefactos exportados, como PDF o STL
-- `hardware/` CAD, piezas y ensambles mecanicos
-- `docs/` decisiones, arquitectura, validacion y notas tecnicas
-- `thesis-latex/` version academica en LaTeX
-- `tools/` scripts de banco y utilidades de control
-- `docs/evidence/` fotos y video de las pruebas del banco
+- `docs/`: arquitectura, decisiones, manuales y evidencia.
+- `hardware/`: CAD, piezas y ensambles mecanicos.
+- `tests/`: pruebas del protocolo CAN y del seguimiento.
+- `thesis-latex/`: estructura academica del proyecto.
+- `tools/`: runtimes y utilidades de banco.
 
-## Lo que faltaria para que el repo quede fuerte
+## Documentacion principal
 
-1. Confirmar el HAT exacto y su interfaz real de `CAN`.
-2. Documentar el flujo motor/hardware con comandos de prueba reproducibles.
-3. Registrar resultados de pruebas con el hardware definitivo de actuacion.
-4. Cerrar la arquitectura final cuando se valide el bus `CAN` real.
+- [Indice de documentacion](docs/README.md)
+- [Seguimiento directo por CAN](docs/direct-can-follow-runtime.md)
+- [Evaluacion del HAT WVS-14882](docs/hat-wvs-14882-evaluacion.md)
+- [Manual AS5600 y Raspberry Pi](docs/manual-as5600-rpi-zero-2w.md)
+- [Arquitectura heredada UIM2513](docs/arquitectura-uim2513-rs232-can.md)
+- [Roadmap](docs/roadmap.md)
+- [Evidencia del 5 de agosto de 2026](docs/evidence/2026-08-05/README.md)
