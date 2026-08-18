@@ -7,7 +7,10 @@ motorreductor con la caja de direccion del banco steer-by-wire.
 
 ## Contenido
 
+- `support-motor-v01-preview.png`: vista preliminar del modelo CAD.
 - registro documental de la version 1 del soporte.
+
+![Vista preliminar del soporte motor v01](support-motor-v01-preview.png)
 
 ## Archivos CAD relacionados
 
@@ -21,7 +24,4 @@ El primer estudio estatico de SolidWorks Simulation se conserva junto a la
 pieza en `hardware/cad/parts/` para mantener la relacion directa entre
 geometria y resultados.
 
-## Nota
-
-La vista renderizada del soporte se agregara en una actualizacion posterior.
 Los archivos CAD y del estudio ya quedaron versionados en el repositorio.

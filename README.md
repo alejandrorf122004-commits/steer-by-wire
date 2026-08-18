@@ -127,6 +127,8 @@ repositorio:
 - estudio estatico inicial de SolidWorks Simulation;
 - registro mecanico inicial en [evidencia 2026-08-17](docs/evidence/2026-08-17/README.md).
 
+![Vista preliminar del soporte motor v01](docs/evidence/2026-08-17/support-motor-v01-preview.png)
+
 ## Documentacion principal
 
 - [Indice de documentacion](docs/README.md)
