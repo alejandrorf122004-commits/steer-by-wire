@@ -37,6 +37,19 @@ SBW-A01_steering-input-module_v01
 El archivo nativo conserva la extension de la herramienta CAD. Los archivos
 STEP, STL, DXF y PDF derivados se guardan en `exports/` o `drawings/`.
 
+## Activos actuales
+
+- `parts/SBW-001_as5600-sensor-mount_v01.SLDPRT`
+- `parts/SBW-001_support-motor_v01.SLDPRT`
+- `parts/SBW-002_bearing-mount_v01.SLDPRT`
+- `parts/SBW-003_magnet-holder_v01.SLDPRT`
+- `assemblies/steering-input-module/SBW-A01_steering-input-module_v01.SLDASM`
+- `assemblies/support-motor-steering-box/support_v01.SLDASM`
+- `vendor/stepper/EG17-G50.SLDPRT`
+
+El soporte de motor `v01` ya incluye un estudio estatico preliminar exportado
+por SolidWorks Simulation en la misma carpeta de `parts/`.
+
 ## Regla importante
 
 Los archivos de `vendor/` son referencias geometricas. Si es necesario

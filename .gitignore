@@ -8,3 +8,5 @@ Thumbs.db
 *.swp
 output/pdf/*.pdf
 output/stl/*.stl
+~$*
+PerformanceLog.txt

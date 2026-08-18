@@ -116,6 +116,17 @@ python3 tests/test_steer_by_wire_follow_runtime.py
 - `thesis-latex/`: estructura academica del proyecto.
 - `tools/`: runtimes y utilidades de banco.
 
+## Avance mecanico actual
+
+La primera version del soporte motor-caja de direccion ya esta incorporada al
+repositorio:
+
+- pieza nativa `SBW-001_support-motor_v01.SLDPRT`;
+- ensamble `support_v01.SLDASM`;
+- modelo de referencia del motorreductor `EG17-G50.SLDPRT`;
+- estudio estatico inicial de SolidWorks Simulation;
+- registro mecanico inicial en [evidencia 2026-08-17](docs/evidence/2026-08-17/README.md).
+
 ## Documentacion principal
 
 - [Indice de documentacion](docs/README.md)

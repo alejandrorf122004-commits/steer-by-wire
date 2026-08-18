@@ -19,6 +19,7 @@ lea rapido y sin perder el hilo tecnico.
 - [oled-compass-display.md](oled-compass-display.md) explica la flecha en la OLED
 - [hat-can-probe.md](hat-can-probe.md) primer paso para validar el HAT WVS-14882
 - [evidencia 2026-08-05](evidence/2026-08-05/README.md) video y resultados del seguimiento completo
+- [evidencia 2026-08-17](evidence/2026-08-17/README.md) soporte motor-caja de direccion v01
 
 ## Recomendacion de uso
 
