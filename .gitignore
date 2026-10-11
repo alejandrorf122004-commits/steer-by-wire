@@ -10,3 +10,4 @@ output/pdf/*.pdf
 output/stl/*.stl
 ~$*
 PerformanceLog.txt
+*.workspace

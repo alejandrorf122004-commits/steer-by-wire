@@ -37,15 +37,34 @@ actuador aumenta cuando el volante se mueve mas rapido.
   incoherentes del sensor.
 - Restauracion de aceleracion y desaceleracion del motor al terminar.
 
-## Prueba de sensor y OLED
+## Calibrar cero del sensor
+
+Con el volante quieto en la posicion que debe ser `0°`, ejecutar:
+
+```bash
+cd ~/Documentos/steer-by-wire
+source .venv/bin/activate
+python3 tools/steer_by_wire_follow_runtime.py calibrate-zero --no-oled
+```
+
+El cero queda guardado en `.sbw_sensor_zero.json` y se carga automaticamente en
+`monitor` y `follow`, incluso despues de apagar y prender la Raspberry Pi.
+
+## Prueba de sensor sin OLED
 
 Esta prueba no envia ordenes al motor:
 
 ```bash
 cd ~/Documentos/steer-by-wire
 source .venv/bin/activate
-python3 tools/steer_by_wire_follow_runtime.py monitor --duration 10
+python3 tools/steer_by_wire_follow_runtime.py monitor --no-oled --terminal-hz 5 --duration 10
 ```
+
+Debe imprimir en la terminal lineas como `AS5600 angle=... raw=...`. El angulo
+se muestra como valor relativo firmado alrededor del cero guardado; por ejemplo,
+una lectura cercana a `358°` se muestra como `-2°`. Por defecto, cualquier valor
+entre `-2°` y `+2°` se muestra como `0°`; ese filtro se puede ajustar con
+`--zero-deadband`.
 
 ## Seguimiento completo de banco
 
@@ -61,6 +80,8 @@ sudo .venv/bin/python tools/steer_by_wire_follow_runtime.py follow \
   --max-speed 160000 \
   --command-deadband 40 \
   --command-hz 25 \
+  --no-oled \
+  --terminal-hz 5 \
   --status-hz 10 \
   --max-sensor-step 60 \
   --max-sensor-outliers 5 \

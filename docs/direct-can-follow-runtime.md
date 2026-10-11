@@ -12,7 +12,7 @@ SocketCAN y un HAT basado en MCP2515.
 | --- | --- |
 | Computador | Raspberry Pi Zero 2 W |
 | Sensor de entrada | AS5600 por I2C, direccion `0x36` |
-| Pantalla | OLED SSD1306 por I2C, direccion `0x3C` |
+| Pantalla | OLED SSD1306 por I2C, direccion `0x3C`; opcional con `--no-oled` |
 | Interfaz CAN | WVS-14882, MCP2515, oscilador de 12 MHz |
 | Bus CAN | `can0`, `500 kbit/s` |
 | Controlador | UIM342, nodo `13` |
@@ -27,7 +27,7 @@ SocketCAN y un HAT basado en MCP2515.
 4. Calcula una velocidad usando velocidad del volante y error de seguimiento.
 5. Envia posicion, velocidad e inicio de movimiento por CAN.
 6. Consulta periodicamente el estado y la posicion interna del motor.
-7. Actualiza la OLED en un hilo separado para no bloquear el control.
+7. Imprime el angulo del AS5600 en terminal; si la OLED esta habilitada, la actualiza en un hilo separado.
 8. Envia parada y restaura los parametros temporales al finalizar.
 
 ## Protecciones implementadas
@@ -48,6 +48,7 @@ SocketCAN y un HAT basado en MCP2515.
 | Frecuencia del sensor | 100 Hz |
 | Frecuencia maxima de comandos | 25 Hz |
 | Frecuencia de estado del motor | 10 Hz |
+| Frecuencia de terminal | 5 Hz sin OLED |
 | Velocidad maxima | 160000 pulsos/s |
 | Aceleracion y desaceleracion temporales | 100 ms |
 | Umbral de envio | 40 pulsos |
